@@ -1,0 +1,47 @@
+{
+  "name": "server-side-react-falcor-demo",
+  "version": "0.0.0",
+  "description": "a tiny demo of using falcor on the server side when doing React universal JS",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf dist",
+    "copy-static": "cp -R src/static/ dist/static/",
+    "build-server": "mkdir dist && npm run copy-static && ./node_modules/.bin/babel src -d dist",
+    "build-client": "rm -rf dist/static/js && mkdir -p dist/static/js && ./node_modules/.bin/webpack",
+    "build-server-watch": "./node_modules/.bin/babel --watch src -d dist",
+    "start-server": "./node_modules/.bin/nodemon dist/server/main.js",
+    "start-server-debug": "./node_modules/.bin/nodemon --debug-brk dist/server/main.js",
+    "start": "npm run clean && npm run build-server && npm run build-client && (npm run build-server-watch & npm run start-server)",
+    "start-debug": "npm run clean && npm run build-server && npm run build-client && (npm run build-server-watch & npm run start-server-debug)"
+  },
+  "author": "Matt Greer <matt.e.greer@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3",
+    "falcor": "^0.1.15",
+    "falcor-router": "^0.2.12",
+    "history": "^1.17.0",
+    "react": "^0.14.5",
+    "react-dom": "^0.14.5",
+    "react-redux": "^4.0.6",
+    "react-router": "^1.0.3",
+    "redux": "^3.0.5",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-cli": "^6.3.17",
+    "babel-eslint": "^4.1.6",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^2.1.1",
+    "eslint-plugin-react": "^3.13.1",
+    "nodemon": "^1.8.1",
+    "webpack": "^1.12.9"
+  }
+}
